@@ -552,8 +552,8 @@ class BaseMetadataObject(object):
         Set: {"label":label, "value":value}
         Really add_metadata, as won't overwrite
         """
-        if type(mdhash) != dict:
-            raise ValueError("set_metadata takes a dict()")
+        if not isinstance(mdhash, dict) or not isinstance(mdhash, OrderedDict):
+            raise ValueError("set_metadata takes a dict() or OrderedDict")
 
         # by reference, not value, so can modify in place without
         # triggering __setattr__ on the resource ;)
